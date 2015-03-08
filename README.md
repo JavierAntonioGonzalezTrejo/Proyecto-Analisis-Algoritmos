@@ -2,4 +2,4 @@
 Proyecto 2 (Sistema de ecuaciones)
 
 # Como instalar
-Unicamente se requiere que se clone el repositorio, y que la carpeta donde se encuentra el repositorio sea seleccionada como WorkSpace en Eclipse
+En la vista "git" de eclispse, seleccionar la carpeta donde se encuantra el repositorio clonado, despues click derecho y click en "Importar proyectos"
