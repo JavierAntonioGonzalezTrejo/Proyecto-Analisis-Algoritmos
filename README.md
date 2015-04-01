@@ -1,5 +1,8 @@
 # Proyecto-Final-Matematicas-Discretas
 Proyecto 2 (Sistema de ecuaciones)
+###Introduccion
+eL proyecto tiene la intencion de resolver cualquier sistema de ecuaciones como practica de la programacion de analisis de algoritmos
 
-# Como instalar
-Unicamente se requiere que se clone el repositorio, y que la carpeta donde se encuentra el repositorio sea seleccionada como WorkSpace en Eclipse
+### Como aportar
+Solo se debe de clonar este repositorio usando cualquier cliente git, a continuacion utilizar la vista "git" de eclipse, agregar el repo y importar el unico pryecto que se incluye en el.
+Mas informacion [aqui](http://www.vogella.com/tutorials/EclipseGit/article.html)
