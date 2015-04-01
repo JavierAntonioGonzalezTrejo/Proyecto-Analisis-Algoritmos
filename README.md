@@ -1,4 +1,4 @@
-# Proyecto-Final-Matematicas-Discretas
+# Proyecto-Final-Analisis-Algoritimos
 Proyecto 2 (Sistema de ecuaciones)
 ###Introduccion
 eL proyecto tiene la intencion de resolver cualquier sistema de ecuaciones como practica de la programacion de analisis de algoritmos
