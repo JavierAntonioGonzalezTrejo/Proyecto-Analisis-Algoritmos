@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
+import java.awt.Rectangle;
 
 /**
  *
@@ -33,7 +34,8 @@ public class Window extends javax.swing.JFrame {
     /**
      * Creates new form LUPSOLVE
      */
-    public Window() {  //incia los componentes del jFrame
+    public Window() {
+    	setResizable(false);
         initComponents();
         this.setLocationRelativeTo(null);
         
@@ -62,7 +64,7 @@ public class Window extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("LUP - SOLVE");
-        setBounds(new java.awt.Rectangle(0, 0, 840, 480));
+        setBounds(new Rectangle(0, 0, 820, 480));
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 1, true), "LUP - Solve"));
         jPanel1.setLayout(null);
@@ -80,7 +82,7 @@ public class Window extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButtonGenerar);
-        jButtonGenerar.setBounds(280, 23, 140, 30);
+        jButtonGenerar.setBounds(308, 20, 140, 34);
 
         jTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -93,18 +95,18 @@ public class Window extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable);
 
         jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(20, 60, 520, 330);
+        jScrollPane1.setBounds(20, 60, 549, 330);
 
         jTextArea.setColumns(20);
         jTextArea.setRows(5);
         jScrollPane2.setViewportView(jTextArea);
 
         jPanel1.add(jScrollPane2);
-        jScrollPane2.setBounds(560, 60, 320, 330);
+        jScrollPane2.setBounds(623, 60, 358, 330);
 
         jButtonLimpiar.setText("Limpiar");
         jPanel1.add(jButtonLimpiar);
-        jButtonLimpiar.setBounds(680, 400, 80, 23);
+        jButtonLimpiar.setBounds(763, 401, 80, 23);
 
         jButton2.setText("Resolver sistema");
         jPanel1.add(jButton2);
@@ -112,7 +114,7 @@ public class Window extends javax.swing.JFrame {
 
         jLabel2.setText("Pasos:");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(690, 30, 60, 20);
+        jLabel2.setBounds(763, 29, 60, 20);
         
         btnAyudaMaual = new JButton("Ayuda - Manual");
 
@@ -122,12 +124,9 @@ public class Window extends javax.swing.JFrame {
         		.addGroup(layout.createSequentialGroup()
         			.addContainerGap()
         			.addGroup(layout.createParallelGroup(Alignment.LEADING)
-        				.addGroup(Alignment.TRAILING, layout.createSequentialGroup()
-        					.addComponent(jPanel1, GroupLayout.DEFAULT_SIZE, 892, Short.MAX_VALUE)
-        					.addGap(138))
-        				.addGroup(layout.createSequentialGroup()
-        					.addComponent(btnAyudaMaual, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE)
-        					.addContainerGap(908, Short.MAX_VALUE))))
+        				.addComponent(jPanel1, GroupLayout.DEFAULT_SIZE, 1020, Short.MAX_VALUE)
+        				.addComponent(btnAyudaMaual, GroupLayout.PREFERRED_SIZE, 122, GroupLayout.PREFERRED_SIZE))
+        			.addContainerGap())
         );
         layout.setVerticalGroup(
         	layout.createParallelGroup(Alignment.LEADING)
@@ -220,6 +219,4 @@ public class Window extends javax.swing.JFrame {
     private JButton btnAyudaMaual;
     // End of variables declaration//GEN-END:variables
 }
-
-
 
