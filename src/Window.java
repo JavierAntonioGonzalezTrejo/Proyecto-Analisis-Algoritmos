@@ -3,9 +3,6 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-
-
-
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.JButton;
@@ -13,8 +10,8 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Rectangle;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
+import javax.swing.JTextField;
+import javax.swing.JLabel;
 
 /**
  *
@@ -61,16 +58,7 @@ public class Window extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea = new javax.swing.JTextArea();
         jButtonLimpiar = new javax.swing.JButton();
-        jButtonLimpiar.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent arg0) {
-        		
-        	}
-        });
         jButton2 = new javax.swing.JButton();
-        jButton2.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        	}
-        });
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -103,6 +91,7 @@ public class Window extends javax.swing.JFrame {
                 "x"
             }
         ));
+        jTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
         jScrollPane1.setViewportView(jTable);
 
         jPanel1.add(jScrollPane1);
@@ -128,11 +117,6 @@ public class Window extends javax.swing.JFrame {
         jLabel2.setBounds(763, 29, 60, 20);
         
         btnAyudaMaual = new JButton("Ayuda - Manual");
-        btnAyudaMaual.addActionListener(new ActionListener() {
-        	public void actionPerformed(ActionEvent e) {
-        		
-        	}
-        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         layout.setHorizontalGroup(
@@ -152,6 +136,14 @@ public class Window extends javax.swing.JFrame {
         			.addComponent(jPanel1, GroupLayout.DEFAULT_SIZE, 435, Short.MAX_VALUE)
         			.addContainerGap())
         );
+        
+        textFieldResultados = new JTextField();
+        textFieldResultados.setBounds(580, 20, 140, 30);
+        jPanel1.add(textFieldResultados);
+        
+        JLabel lblMatrices = new JLabel("Matrices:");
+        lblMatrices.setBounds(524, 18, 75, 43);
+        jPanel1.add(lblMatrices);
         getContentPane().setLayout(layout);
 
         pack();
@@ -233,6 +225,5 @@ public class Window extends javax.swing.JFrame {
     private javax.swing.JTextArea jTextArea;
     private javax.swing.JTextField jTextFieldNumeroDeEc;
     private JButton btnAyudaMaual;
-    // End of variables declaration//GEN-END:variables
+    private JTextField textFieldResultados;
 }
-
