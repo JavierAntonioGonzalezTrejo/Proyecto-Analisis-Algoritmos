@@ -19,7 +19,10 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
+<<<<<<< HEAD
 import javax.swing.JDesktopPane;
+=======
+>>>>>>> origin/Develop
 
 /**
  *
@@ -33,7 +36,7 @@ public class Window extends javax.swing.JFrame implements ActionListener{
 	private int n; //variable encargada de guardar el numero de ecuaciones
     DefaultTableModel modelo = new DefaultTableModel(); //modelo de la tabla para ingresar las ecuaciones
     Boolean ban = false;
-    
+    Procesos misProcesos = new Procesos();
     public int getN(){ //Metodos para inicializar a n, y obtener su valor
         return n;
     }
@@ -124,7 +127,7 @@ public class Window extends javax.swing.JFrame implements ActionListener{
         jLabel2.setBounds(591, 28, 45, 20);
         
         btnAyudaMaual = new JButton("Ayuda - Manual");
-
+        btnAyudaMaual.addActionListener(this);
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         layout.setHorizontalGroup(
         	layout.createParallelGroup(Alignment.LEADING)
@@ -272,6 +275,7 @@ public class Window extends javax.swing.JFrame implements ActionListener{
 			}
 		}
 		
+<<<<<<< HEAD
 		
 	}
 	private double[][] parseMatriz() {
@@ -291,5 +295,10 @@ public class Window extends javax.swing.JFrame implements ActionListener{
 		for(int i = 0; i < n; i++)
 			vectorValoresIndependientes[i]= Double.parseDouble((String) jTable.getModel().getValueAt(i, ultimaColumna ));
 		return vectorValoresIndependientes;
+=======
+		if(e.getSource() == btnAyudaMaual){	
+			misProcesos.cargarArchivo();
+		}
+>>>>>>> origin/Develop
 	}
 }
