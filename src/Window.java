@@ -32,6 +32,7 @@ public class Window extends javax.swing.JFrame implements ActionListener{
     DefaultTableModel modelo = new DefaultTableModel(); //modelo de la tabla para ingresar las ecuaciones
     Boolean ban = false;
     Procesos misProcesos = new Procesos();
+    String pasitos = "";
     public int getN(){ //Metodos para inicializar a n, y obtener su valor
         return n;
     }
@@ -48,6 +49,58 @@ public class Window extends javax.swing.JFrame implements ActionListener{
         initComponents();
         this.setLocationRelativeTo(null);
         
+    }
+    
+    public String algoritmo(int control)
+    {
+    	String paso = null;
+    	if(control == 0)
+    		paso ="n = renglones(A)";
+    	if(control == 1)
+    		paso ="for i=1 to n do";
+    	if(control == 2)
+    		paso ="\t m[i] = i"; 
+    	if(control == 3)
+    		paso ="for k = 1 to n-1 do"; 
+    	if(control == 4)
+    		paso ="\t p=0"; 
+    	if(control == 5)
+    		paso ="\t for i = k to n do";
+    	if(control == 6)
+    		paso ="\t\t if |a(ik)| > p then"; 
+    	if(control == 7)
+    		paso ="\t\t\t p = |a(ik)|"; 
+    	if(control == 8)
+    		paso ="\t\t\t k = i"; 
+    	if(control == 9)
+    		paso ="\t\t if p = 0 then"; 
+    	if(control == 10)
+    		paso ="\t\t\t error()"; 
+    	if(control == 11)
+    		paso ="\t\t echange(m[k],m[K])"; 
+    	if(control == 12)
+    		paso ="\t\t echangeA(k,K)"; 
+    	if(control == 13)
+    		paso ="\t\t pivote(k)"; 
+    	
+    	
+    	if(control == 14)
+    		paso ="u(kk) = a(kk)"; 
+    	if(control == 15)
+    		paso ="for i = k+1 to n do"; 
+    	if(control == 16)
+    		paso ="\t i(ik) = a(ik)/u(kk)"; 
+    	if(control == 17)
+    		paso ="\t u(ki) = a(ki)"; 
+    	if(control == 18)
+    		paso ="for i = k+1 to n do"; 
+    	if(control == 19)
+    		paso ="\t for j= k+q to n do "; 
+    	if(control == 20)
+    		paso ="\t\t a(ij) = a(ij) - I(ik)U(kj)"; 
+         
+    	
+    	return paso;
     }
 
     /**
@@ -147,7 +200,7 @@ public class Window extends javax.swing.JFrame implements ActionListener{
         lblMatrices.setBounds(591, 264, 60, 34);
         jPanel1.add(lblMatrices);
         
-        TextArea textAreaPasos = new TextArea();
+        textAreaPasos = new TextArea();
         textAreaPasos.setEditable(false);
         textAreaPasos.setBounds(657, 24, 339, 234);
         jPanel1.add(textAreaPasos);
@@ -245,6 +298,7 @@ public class Window extends javax.swing.JFrame implements ActionListener{
     private javax.swing.JTextField jTextFieldNumeroDeEc;
     private JButton btnAyudaMaual;
     private TextArea textAreaMatrices;
+    private TextArea textAreaPasos;
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
@@ -259,11 +313,17 @@ public class Window extends javax.swing.JFrame implements ActionListener{
 				try{
 					this.parseMatriz();
 					this.parseValoresIndependiente();
+
 				}
 				catch(Exception e1){
 					JOptionPane.showMessageDialog(null, "Los valores no son Numeros reales o no existen, reingresa los datos y/o asegurate de dar [enter] a os valores ingreados!");
 				}
-				textAreaMatrices.setText("holo holo holo holo");	
+				textAreaMatrices.setText("holo holo holo holo");
+				for(int a = 0; a<21;a++)
+				{
+					pasitos += algoritmo(a)+"\n";
+				}
+				textAreaPasos.setText(pasitos);
 			}
 		}
 		if(e.getSource() == btnAyudaMaual){	
