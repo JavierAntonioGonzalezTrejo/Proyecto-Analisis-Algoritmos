@@ -10,17 +10,22 @@ import javax.swing.GroupLayout.Alignment;
 import javax.swing.GroupLayout;
 import javax.swing.LayoutStyle.ComponentPlacement;
 import java.awt.Rectangle;
-import javax.swing.JTextField;
 import javax.swing.JLabel;
 import java.awt.TextArea;
 import java.awt.Font;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 /**
  *
  * @author federico
  */
-public class Window extends javax.swing.JFrame {
-    int n; //variable encargada de guardar el numero de ecuaciones
+public class Window extends javax.swing.JFrame implements ActionListener{
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	int n; //variable encargada de guardar el numero de ecuaciones
     DefaultTableModel modelo = new DefaultTableModel(); //modelo de la tabla para ingresar las ecuaciones
     Boolean ban = false;
     
@@ -58,7 +63,10 @@ public class Window extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable = new javax.swing.JTable();
         jButtonLimpiar = new javax.swing.JButton();
+        jButtonLimpiar.addActionListener(this);
+        
         jButton2 = new javax.swing.JButton();
+        jButton2.addActionListener(this);
         jLabel2 = new javax.swing.JLabel();
         jLabel2.setFont(new Font("Tahoma", Font.PLAIN, 13));
 
@@ -137,10 +145,12 @@ public class Window extends javax.swing.JFrame {
         jPanel1.add(lblMatrices);
         
         TextArea textAreaPasos = new TextArea();
+        textAreaPasos.setEditable(false);
         textAreaPasos.setBounds(657, 24, 339, 234);
         jPanel1.add(textAreaPasos);
         
         textAreaMatrices = new TextArea();
+        textAreaMatrices.setEditable(false);
         textAreaMatrices.setBounds(657, 264, 339, 124);
         jPanel1.add(textAreaMatrices);
         getContentPane().setLayout(layout);
@@ -157,15 +167,24 @@ public class Window extends javax.swing.JFrame {
             if(n<=1){ //validacion
                throw new Exception("Numero incorrecto!! Verifique"); //Validar que el numero de ecuaciones sea mayor que 2
             }
-            Object columnas[] = new Object[n+1]; //Generar Numero de ecuaciones NxN en la tabla
-            for (int i = 0; i < n+1; i++) { //for para ir añadiendo las columnas en la tabla
-                if (i<n) {
-                    columnas[i] = "x" + (i+1); //va añadiendo las incognitas en la tabla x1,x2,x3...xn
+            Object columnas[] = new Object[n+2]; //Generar Numero de ecuaciones NxN en la tabla + la columna del numero de ecuacion
+            columnas[0] = "No. Ec";
+            for (int i = 1; i < n+2; i++) { //for para ir añadiendo las columnas en la tabla
+                if (i < n + 1) {
+                    columnas[i] = "x" + (i); //va añadiendo las incognitas en la tabla x1,x2,x3...xn
                 } else{
                     columnas[i] = "B"; // agrega la ultima columna b 
                 }
             }
+            
+ 
             modelo = new DefaultTableModel(columnas , n); //modificar el tamaño de la tabla
+            
+            for(int i = 0; i < n; i++){ // Se generara el un indice del numero de ecuaciones.
+            	modelo.setValueAt(i + 1, i, 0);//Inserta los indices del numero de ecuaciones en la columna 0.
+            }
+            
+            
             jTable.setModel(modelo); //dimension de la matriz
             
             
@@ -223,4 +242,17 @@ public class Window extends javax.swing.JFrame {
     private javax.swing.JTextField jTextFieldNumeroDeEc;
     private JButton btnAyudaMaual;
     private TextArea textAreaMatrices;
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		// TODO Auto-generated method stub
+		if(e.getSource() == jButtonLimpiar){
+			textAreaMatrices.setText("");
+			
+		}
+		
+		if(e.getSource() == jButton2){
+			textAreaMatrices.setText("holo holo holo holo");
+		}
+	}
 }
