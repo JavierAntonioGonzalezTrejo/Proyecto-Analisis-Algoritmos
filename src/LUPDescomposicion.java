@@ -3,6 +3,9 @@ import javax.swing.*;
 public class LUPDescomposicion {
 	
 	private double[][] matrizLUP;
+	private double[][] matrizL;
+	private double[][] matrizU;
+	private double[][] matrizP;
 	private int[] vectorM; //Arreglo que almacena posicion de los '1' para matriz de permutacion	
 	private int K; //Variable para verificar posicion de intercambio elemento y renglon
 	public int[] vectorIns; //Vector donde se almacenara el numero de pasos realizados por cada instruccion
@@ -115,4 +118,79 @@ public class LUPDescomposicion {
 			matrizLUP[fila2][i] = aux;
 		}
 	}
+	
+	//Metodo para obtener la matriz L a partir de la matriz LUP
+		public void obtenerMatrizL()
+		{
+			int n = matrizLUP.length;
+			matrizL = new double[n][n];
+			
+			for(int i = 0; i < n; i++)
+			{
+				for(int j = 0; j < n; j++)
+				{
+					if(i > j)
+					{
+						matrizL[i][j] = matrizLUP[i][j];
+					}
+					
+					if(i == j)
+					{
+						matrizL[i][j] = 1;
+					}
+
+					if(i < j)
+					{
+						matrizL[i][j] = 0;
+					}	
+				}
+			}
+		}
+	
+	//Metodo para obtener la matriz U a partir de la matriz LUP
+	public void obtenerMatrizU()
+	{
+		int n = matrizLUP.length;
+		matrizU = new double[n][n];
+		
+		for(int i = 0; i < n; i++)
+		{
+			for(int j = 0; j < n; j++)
+			{
+				if(i > j)
+				{
+					matrizU[i][j] = 0;
+				}
+				
+				else
+				{
+					matrizU[i][j] = matrizLUP[i][j];
+				}
+			}
+		}
+	}
+
+	//Metodo para obtener la matriz P usando vectorM
+	public void obtenerMatrizP()
+	{
+		int n = matrizLUP.length;
+		matrizP = new double[n][n];
+		
+		for(int i = 0; i < n; i++)
+		{
+			for(int j = 0; j < n; j++)
+			{
+				if(vectorM[j] == j)
+				{
+					matrizP[j][vectorM[j]] = 0;
+				}
+
+				else
+				{
+					matrizP[j][vectorM[j]] = 1;
+				}
+			}
+		}
+	}
+
 }
