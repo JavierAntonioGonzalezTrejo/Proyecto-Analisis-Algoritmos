@@ -67,7 +67,12 @@ public class LUPDescomposicion {
 		vectorIns[4] +=1;//Instrucciones
 	}
 
-	public void pivote(int k)
+	public double[][] getMatrizLUP()
+	{
+		return matrizLUP;
+	}
+	
+	private void pivote(int k)
 	{	
 		int n = matrizLUP.length;
 		vectorIns[15] +=1;//Instrucciones
@@ -97,7 +102,7 @@ public class LUPDescomposicion {
 	}
 	
 	//Metodo para intercambiar elementos en el vectorM
-	public void intercambiarElementos(int elemento1, int elemento2)
+	private void intercambiarElementos(int elemento1, int elemento2)
 	{
 		int aux;
 
@@ -107,7 +112,7 @@ public class LUPDescomposicion {
 	}
 	
 	//Metodo para intercambiar renglones en la matriz
-	public void intercambiarRenglones(int fila1, int fila2)
+	private void intercambiarRenglones(int fila1, int fila2)
 	{
 		double aux;
 		
@@ -120,7 +125,7 @@ public class LUPDescomposicion {
 	}
 	
 	//Metodo para obtener la matriz L a partir de la matriz LUP
-		public void obtenerMatrizL()
+		public double[][] obtenerMatrizL()
 		{
 			int n = matrizLUP.length;
 			matrizL = new double[n][n];
@@ -145,10 +150,11 @@ public class LUPDescomposicion {
 					}	
 				}
 			}
+			return matrizL;
 		}
 	
 	//Metodo para obtener la matriz U a partir de la matriz LUP
-	public void obtenerMatrizU()
+	public double[][] obtenerMatrizU()
 	{
 		int n = matrizLUP.length;
 		matrizU = new double[n][n];
@@ -168,10 +174,11 @@ public class LUPDescomposicion {
 				}
 			}
 		}
+		return matrizU;
 	}
 
 	//Metodo para obtener la matriz P usando vectorM
-	public void obtenerMatrizP()
+	public double[][] obtenerMatrizP()
 	{
 		int n = matrizLUP.length;
 		matrizP = new double[n][n];
@@ -191,6 +198,7 @@ public class LUPDescomposicion {
 				}
 			}
 		}
+		return matrizP;
 	}
 
 }
