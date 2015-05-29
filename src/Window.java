@@ -15,6 +15,7 @@ import java.awt.TextArea;
 import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JDesktopPane;
 
 /**
  *
@@ -248,11 +249,14 @@ public class Window extends javax.swing.JFrame implements ActionListener{
 		// TODO Auto-generated method stub
 		if(e.getSource() == jButtonLimpiar){
 			textAreaMatrices.setText("");
-			
 		}
 		
-		if(e.getSource() == jButton2){
-			textAreaMatrices.setText("holo holo holo holo");
+		if(e.getSource() == jButton2){	
+			int optionSelected = JOptionPane.showConfirmDialog(this, "Seguro que son los datos correctos?", "Confirmacion", JOptionPane.YES_NO_OPTION);
+			
+			
+			if(optionSelected == JOptionPane.YES_OPTION)
+				textAreaMatrices.setText("holo holo holo holo");
 		}
 	}
 }
