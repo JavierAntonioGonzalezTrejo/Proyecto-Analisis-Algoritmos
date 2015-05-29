@@ -32,7 +32,7 @@ public class Window extends javax.swing.JFrame implements ActionListener{
     DefaultTableModel modelo = new DefaultTableModel(); //modelo de la tabla para ingresar las ecuaciones
     Boolean ban = false;
     Procesos misProcesos = new Procesos();
-    String pasitos = "";
+    String pasosAlg = "[#Veces] - Instruccion\n";//Almacena los pasos que realiza el algoritmo
     public int getN(){ //Metodos para inicializar a n, y obtener su valor
         return n;
     }
@@ -321,9 +321,9 @@ public class Window extends javax.swing.JFrame implements ActionListener{
 				textAreaMatrices.setText("holo holo holo holo");
 				for(int a = 0; a<21;a++)
 				{
-					pasitos += algoritmo(a)+"\n";
+					pasosAlg += "[0]\t" + algoritmo(a)+"\n";
 				}
-				textAreaPasos.setText(pasitos);
+				textAreaPasos.setText(pasosAlg);
 			}
 		}
 		if(e.getSource() == btnAyudaMaual){	
