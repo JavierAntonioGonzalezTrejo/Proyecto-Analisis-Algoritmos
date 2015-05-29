@@ -2,18 +2,17 @@ import javax.swing.*;
 
 public class LUPDescomposicion {
 	
-	private double[][] matrizU; //Matriz triangular inferior(U)
-	private double[][] matrizL; //Matriz trangular superior
+	private double[][] matrizLUP;
 	private int[] vectorM; //Arreglo que almacena posicion de los '1' para matriz de permutacion
 	private int K; //Variable para verificar posicion de intercambio elemento y renglon
 	
 	public void LUP(double[][] matrizA)
 	{
-		int n = matrizA.length; 
+		int n = matrizA.length;
+		matrizLUP = new double[n][n]; 
+		matrizLUP = matrizA;
+		vectorM = new int[n];
 		double pivote;
-		matrizU = new double[n][n];
-		matrizL = new double[n][n];
-		vectorM = new int[n];		
 		
 		for(int i = 0; i < n; i++)
 		{
@@ -26,9 +25,9 @@ public class LUPDescomposicion {
 			
 			for(int i = k; i < n; i++)
 			{
-				if( Math.abs(matrizA[i][k]) > pivote)
+				if( Math.abs(matrizLUP[i][k]) > pivote)
 				{
-					pivote = Math.abs(matrizA[i][k]);
+					pivote = Math.abs(matrizLUP[i][k]);
 					K = i;
 				}
 
@@ -39,28 +38,28 @@ public class LUPDescomposicion {
 			}
 
 			intercambiarElementos(k, K);	
-			intercambiarRenglones(k, K, matrizA);
-			pivote(k, matrizA);	
+			intercambiarRenglones(k, K);
+			pivote(k);	
 		}
 	}
-		
-	public void pivote(int k, double[][] matriz)
+
+	public void pivote(int k)
 	{	
-		int n = matriz.length;
+		int n = matrizLUP.length;
 		
-		matrizU[k][k] = matriz[k][k];
+		matrizLUP[k][k] = matrizLUP[k][k];
 		
 		for(int i = k+1; i < n; i++)
 		{
-			matrizL[i][k] = matriz[i][k] / matrizU[k][k];
-			matrizU[k][i] = matriz[k][i];
+			matrizLUP[i][k] = matrizLUP[i][k] / matrizLUP[k][k];
+			matrizLUP[k][i] = matrizLUP[k][i];
 		}
 		
 		for(int i = k+1; i < n; i++)
 		{
 			for(int j = k+1; j < n; j++)
 			{
-				matriz[i][j] = matriz[i][j] - matrizL[i][k] * matrizU[k][j];
+				matrizLUP[i][j] = matrizLUP[i][j] - matrizLUP[i][k] * matrizLUP[k][j];
 			}
 		}
 	}
@@ -76,23 +75,15 @@ public class LUPDescomposicion {
 	}
 	
 	//Metodo para intercambiar renglones en la matriz
-	public void intercambiarRenglones(int fila1, int fila2, double[][] matriz)
+	public void intercambiarRenglones(int fila1, int fila2)
 	{
-		double aux, aux2, aux3;
+		double aux;
 		
-		for (int i = 0; i < matriz.length; i++)
+		for (int i = 0; i < matrizLUP.length; i++)
 		{     
-			aux = matriz[fila1][i];
-			matriz[fila1][i] = matriz[fila2][i];
-			matriz[fila2][i] = aux;
-			
-			aux2 = matrizL[fila1][i];
-			matrizL[fila1][i] = matrizL[fila2][i];
-			matrizL[fila2][i] = aux2;
-			
-			aux3 = matrizU[fila1][i];
-			matrizU[fila1][i] = matrizU[fila2][i];
-			matrizU[fila2][i] = aux3;
+			aux = matrizLUP[fila1][i];
+			matrizLUP[fila1][i] = matrizLUP[fila2][i];
+			matrizLUP[fila2][i] = aux;
 		}
 	}
 }
