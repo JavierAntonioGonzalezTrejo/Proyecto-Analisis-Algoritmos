@@ -19,10 +19,7 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-<<<<<<< HEAD
 import javax.swing.JDesktopPane;
-=======
->>>>>>> origin/Develop
 
 /**
  *
@@ -271,11 +268,13 @@ public class Window extends javax.swing.JFrame implements ActionListener{
 					JOptionPane.showMessageDialog(null, "Los valores no son Numeros reales o no existen, reingresa los datos y/o asegurate de dar [enter] a os valores ingreados!");
 				}
 				textAreaMatrices.setText("holo holo holo holo");
-				
+		
+				if(e.getSource() == btnAyudaMaual){	
+					misProcesos.cargarArchivo();
+				}
 			}
 		}
 		
-<<<<<<< HEAD
 		
 	}
 	private double[][] parseMatriz() {
@@ -295,10 +294,5 @@ public class Window extends javax.swing.JFrame implements ActionListener{
 		for(int i = 0; i < n; i++)
 			vectorValoresIndependientes[i]= Double.parseDouble((String) jTable.getModel().getValueAt(i, ultimaColumna ));
 		return vectorValoresIndependientes;
-=======
-		if(e.getSource() == btnAyudaMaual){	
-			misProcesos.cargarArchivo();
-		}
->>>>>>> origin/Develop
 	}
 }
