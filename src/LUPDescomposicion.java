@@ -78,13 +78,21 @@ public class LUPDescomposicion {
 	//Metodo para intercambiar renglones en la matriz
 	public void intercambiarRenglones(int fila1, int fila2, double[][] matriz)
 	{
-		double aux;
+		double aux, aux2, aux3;
 		
 		for (int i = 0; i < matriz.length; i++)
 		{     
 			aux = matriz[fila1][i];
 			matriz[fila1][i] = matriz[fila2][i];
 			matriz[fila2][i] = aux;
+			
+			aux2 = matrizL[fila1][i];
+			matrizL[fila1][i] = matrizL[fila2][i];
+			matrizL[fila2][i] = aux2;
+			
+			aux3 = matrizU[fila1][i];
+			matrizU[fila1][i] = matrizU[fila2][i];
+			matrizU[fila2][i] = aux3;
 		}
 	}
 }
