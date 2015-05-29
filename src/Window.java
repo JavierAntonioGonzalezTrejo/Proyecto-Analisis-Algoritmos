@@ -19,8 +19,6 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-import javax.swing.JDesktopPane;
-
 /**
  *
  * @author federico
@@ -250,8 +248,6 @@ public class Window extends javax.swing.JFrame implements ActionListener{
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		double[] vectorValoresIndependientes;
 		if(e.getSource() == jButtonLimpiar){
 			textAreaMatrices.setText("");
 		}
@@ -267,15 +263,12 @@ public class Window extends javax.swing.JFrame implements ActionListener{
 				catch(Exception e1){
 					JOptionPane.showMessageDialog(null, "Los valores no son Numeros reales o no existen, reingresa los datos y/o asegurate de dar [enter] a os valores ingreados!");
 				}
-				textAreaMatrices.setText("holo holo holo holo");
-		
-				if(e.getSource() == btnAyudaMaual){	
-					misProcesos.cargarArchivo();
-				}
+				textAreaMatrices.setText("holo holo holo holo");	
 			}
 		}
-		
-		
+		if(e.getSource() == btnAyudaMaual){	
+			misProcesos.cargarArchivo();
+		}
 	}
 	private double[][] parseMatriz() {
 		// TODO Auto-generated method stub
