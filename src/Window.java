@@ -344,7 +344,7 @@ public class Window extends javax.swing.JFrame implements ActionListener{
 				for(int a = 0; a<21;a++)// Se imprime en el TextField Pasos
 				{
 					if (a==14)
-						pasosAlg = pasosAlg + "\n Funcion Pivote \n";
+						pasosAlg = pasosAlg + "\n Funcion Pivote\n";
 					pasosAlg = pasosAlg + "["+ solucion.pasosLUPD(a) +"]\t" + algoritmo(a)+ "\n";
 				}
 				
