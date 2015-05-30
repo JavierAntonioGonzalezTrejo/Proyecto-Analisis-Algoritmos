@@ -11,7 +11,7 @@ public class LUPDescomposicion {
 	public int[] vectorIns; //Vector donde se almacenara el numero de pasos realizados por cada instruccion
 	private int i; //Variable de control
 
-	public void LUP(double[][] matrizA)
+	public void LUP(double[][] matrizA) throws Exception
 	{
 		int n = matrizA.length;
 		matrizLUP = new double[n][n]; 
@@ -52,7 +52,7 @@ public class LUPDescomposicion {
 				{
 					vectorIns[10] +=1;//Instrucciones
 					JOptionPane.showMessageDialog(null, "EL SISTEMA NO TIENE SOLUCION");
-					
+					throw new Exception();
 				}								
 			}
 			vectorIns[5] +=1;//Instrucciones

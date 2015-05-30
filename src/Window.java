@@ -322,7 +322,7 @@ public class Window extends javax.swing.JFrame implements ActionListener{
 				textAreaPasos.setText(pasosAlg);
 				
 				solucion.LUPSolve();
-				//this.showResults(solucion);
+				this.showResults(solucion);
 			}
 		}
 		if(e.getSource() == btnAyudaMaual){	
@@ -357,7 +357,7 @@ public class Window extends javax.swing.JFrame implements ActionListener{
         
         modelo = new DefaultTableModel(columnas , 1); //modificar el tamaño de la tabla
         
-        for(int i = 1; i < n; i++){ // Se generara el un indice del numero de ecuaciones.
+        for(int i = 1; i <= n; i++){ // Se generara el un indice del numero de ecuaciones.
         	modelo.setValueAt(solucion.getVectorX()[i-1], 0, i);//Inserta los indices del numero de ecuaciones en la columna 0.
         }
         

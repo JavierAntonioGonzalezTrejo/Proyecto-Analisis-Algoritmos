@@ -15,11 +15,19 @@ public class LupSolve {
 		matriz = new LUPDescomposicion();
 		this.vectorB = vectorB;
 		this.matrizLUP = matrizLUP;
+		this.vectorY = new double[vectorB.length];
+		this.vectorX = new double[vectorB.length];
+		
 	}
 	
 	public void LUPSolve()
 	{
-		matriz.LUP(matrizLUP);
+		try {
+			matriz.LUP(matrizLUP);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		matrizL = matriz.obtenerMatrizL();
 		matrizU = matriz.obtenerMatrizU();
 		matrizP = matriz.obtenerMatrizP();
@@ -31,7 +39,7 @@ public class LupSolve {
 			vectorY[i] = obtenerValorVectorB(i) - sumatoriaY(i);
 		}
 		
-		for(int i = 0; i < n; i++)
+		for(int i = n - 1; i >= 0; i--)
 		{
 			vectorX[i] = (vectorY[i] - sumatoriaX(i)) / matrizU[i][i];
 		}
@@ -41,7 +49,7 @@ public class LupSolve {
 	{
 		double resultado = 0; 
 		
-		for(int j = 0; j < i - 1; j++)
+		for(int j = 0; j < i ; j++)
 		{
 			resultado = resultado + (matrizL[i][j] * vectorY[j]);
 		}
@@ -54,7 +62,7 @@ public class LupSolve {
 		
 		for(int j = 0; j < matrizL.length; j++)
 		{
-			valor = matrizP[i][j] * vectorB[j];
+			valor = valor + matrizP[i][j] * vectorB[j];
 		}
 		return valor;	
 	}
