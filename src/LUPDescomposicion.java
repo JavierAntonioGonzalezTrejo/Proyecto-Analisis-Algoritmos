@@ -1,4 +1,3 @@
-import javax.swing.*;
 import java.text.DecimalFormat; 
 
 public class LUPDescomposicion {
@@ -61,7 +60,6 @@ public class LUPDescomposicion {
 				if(pivote == 0)
 				{
 					vectorIns[10] +=1;//Instrucciones
-					JOptionPane.showMessageDialog(null, "EL SISTEMA NO TIENE SOLUCION");
 					throw new Exception();
 				}								
 			}
@@ -235,18 +233,7 @@ public class LUPDescomposicion {
 		pasosMatrices = pasosMatrices + "\n\n MatrizP \n";
 		for(int i = 0; i < n; i++)
 		{
-			for(int j = 0; j < n; j++)
-			{
-				if(vectorM[j] == j)
-				{
-					matrizP[j][vectorM[j]] = 0;
-				}
-
-				else
-				{
-					matrizP[j][vectorM[j]] = 1;
-				}
-			}
+			matrizP[i][vectorM[i]] = 1;
 		}
 		for(int i = 0; i < n; i++)
 		{

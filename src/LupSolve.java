@@ -21,19 +21,16 @@ public class LupSolve {
 		
 	}
 	
-	public void LUPSolve()
+	public void LUPSolve() throws Exception
 	{
+
 		lupSolveMat = "";
 		vectorPasos = new int [6]; //Contar instrucciones
 		for(int i=0; i<6;i++)//Inicializar el valor de los pasos en 0
 			vectorPasos[i] = 0;
 		vectorPasos[0] += 1; //Contar instrucciones
-		try {
-			matriz.LUP(matrizLUP);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		matriz.LUP(matrizLUP);
+
 		matrizL = matriz.obtenerMatrizL();
 		matrizU = matriz.obtenerMatrizU();
 		matrizP = matriz.obtenerMatrizP();
