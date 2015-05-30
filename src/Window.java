@@ -165,6 +165,7 @@ public class Window extends javax.swing.JFrame implements ActionListener{
 
         jButton2.setText("Resolver sistema");
         jPanel1.add(jButton2);
+        jButton2.setEnabled(false);
         jButton2.setBounds(20, 393, 130, 30);
 
         jLabel2.setText("Algoritmo \r\nLUP-Solve:");
@@ -240,7 +241,7 @@ public class Window extends javax.swing.JFrame implements ActionListener{
             
             jTable.setModel(modelo); //dimension de la matriz
             
-            
+            jButton2.setEnabled(true);
         } catch (Exception e) {
             JOptionPane.showMessageDialog(this,e.getMessage()); //Error cuando ingresan una letra en ves de un numero
         }
@@ -301,6 +302,7 @@ public class Window extends javax.swing.JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == jButtonLimpiar){
 			textAreaMatrices.setText("");
+			jButtonGenerarActionPerformed(e);
 		}
 		
 		if(e.getSource() == jButton2){	//El usuario presiona Generar Ecuacion
@@ -324,9 +326,17 @@ public class Window extends javax.swing.JFrame implements ActionListener{
 				}
 				textAreaPasos.setText(pasosAlg);
 				
-				solucion.LUPSolve();
-				this.showResults(solucion);
+				try{
+					solucion.LUPSolve();
+					this.showResults(solucion);
+				} 
+				catch (Exception e1) {
+					// TODO Auto-generated catch block
+					JOptionPane.showMessageDialog(null, "EL SISTEMA NO TIENE SOLUCION!");				
+				}
 			}
+			
+			jButton2.setEnabled(false);
 		}
 		if(e.getSource() == btnAyudaMaual){	
 			misProcesos.cargarArchivo();
@@ -351,7 +361,7 @@ public class Window extends javax.swing.JFrame implements ActionListener{
 		return vectorValoresIndependientes;
 	}
 	
-	private void showResults(LupSolve solucion){
+	private void showResults(LupSolve solucion) throws Exception{
 		Object columnas[] = new Object[n+2]; //Generar Numero de ecuaciones NxN en la tabla + la columna del numero de ecuacion
         columnas[0] = "Soluciones";
         for (int i = 1; i < n+1; i++) { //for para ir añadiendo las columnas en la tabla
@@ -360,10 +370,19 @@ public class Window extends javax.swing.JFrame implements ActionListener{
         
         modelo = new DefaultTableModel(columnas , 1); //modificar el tamaño de la tabla
         
+        
+        
         for(int i = 1; i <= n; i++){ // Se generara el un indice del numero de ecuaciones.
+        	if (isNaN(solucion.getVectorX()[i-1])){
+        		throw new Exception();
+        	}
         	modelo.setValueAt(solucion.getVectorX()[i-1], 0, i);//Inserta los indices del numero de ecuaciones en la columna 0.
         }
         
         jTable.setModel(modelo); //dimension de la matriz
+	}
+	
+	private boolean isNaN(double x){
+		return x != x;
 	}
 }

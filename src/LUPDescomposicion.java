@@ -50,7 +50,6 @@ public class LUPDescomposicion {
 				if(pivote == 0)
 				{
 					vectorIns[10] +=1;//Instrucciones
-					JOptionPane.showMessageDialog(null, "EL SISTEMA NO TIENE SOLUCION");
 					throw new Exception();
 				}								
 			}

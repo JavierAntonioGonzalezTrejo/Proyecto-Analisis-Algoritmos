@@ -20,14 +20,9 @@ public class LupSolve {
 		
 	}
 	
-	public void LUPSolve()
+	public void LUPSolve() throws Exception
 	{
-		try {
-			matriz.LUP(matrizLUP);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		matriz.LUP(matrizLUP);
 		matrizL = matriz.obtenerMatrizL();
 		matrizU = matriz.obtenerMatrizU();
 		matrizP = matriz.obtenerMatrizP();
