@@ -358,32 +358,20 @@ public class Window extends javax.swing.JFrame implements ActionListener{
 		return vectorValoresIndependientes;
 	}
 	
-<<<<<<< HEAD
 	private void showResults(LupSolve solucion) throws Exception{
 		Object columnas[] = new Object[n+2]; //Generar Numero de ecuaciones NxN en la tabla + la columna del numero de ecuacion
-=======
-	private void showResults(LupSolve solucion){
-		Object columnas[] = new Object[n+2]; //Generar Número de ecuaciones NxN en la tabla + la columna del numero de ecuacion
->>>>>>> origin/Develop
         columnas[0] = "Soluciones";
         for (int i = 1; i < n+1; i++) { //for para ir añadiendo las columnas en la tabla
                 columnas[i] = "x" + (i); //va añadiendo las incognitas en la tabla x1,x2,x3...xn
         }
         
-        modelo = new DefaultTableModel(columnas , 1); //modificar el tamaño de la tabla
-        
-<<<<<<< HEAD
-        
-        
+        modelo = new DefaultTableModel(columnas , 1); //modificar el tamaño de la tabla        
         for(int i = 1; i <= n; i++){ // Se generara el un indice del numero de ecuaciones.
         	if (isNaN(solucion.getVectorX()[i-1])){
         		throw new Exception();
         	}
         	modelo.setValueAt(solucion.getVectorX()[i-1], 0, i);//Inserta los indices del numero de ecuaciones en la columna 0.
-=======
-        for(int i = 1; i <= n; i++){ // Se generará el un índice del numero de ecuaciones.
-        	modelo.setValueAt(solucion.getVectorX()[i-1], 0, i);//Inserta los índices del número de ecuaciones en la columna 0.
->>>>>>> origin/Develop
+
         }
         
         jTable.setModel(modelo); //dimensión de la matriz
