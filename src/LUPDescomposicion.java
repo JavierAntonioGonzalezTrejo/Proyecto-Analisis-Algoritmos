@@ -57,11 +57,12 @@ public class LUPDescomposicion {
 					vectorIns[8] +=1;//Instrucciones
 				}
 				vectorIns[9] +=1;//Instrucciones
-				if(pivote == 0)
-				{
-					vectorIns[10] +=1;//Instrucciones
-					throw new Exception();
-				}								
+											
+			}
+			if(pivote == 0)
+			{
+				vectorIns[10] +=1;//Instrucciones
+				throw new Exception();
 			}
 			vectorIns[5] +=1;//Instrucciones
 			intercambiarElementos(k, K);
