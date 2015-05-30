@@ -259,7 +259,7 @@ public class Window extends javax.swing.JFrame implements ActionListener{
             
             jButton2.setEnabled(true);
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this,e.getMessage()); //Error cuando ingresan una letra en vez de un numero
+            JOptionPane.showMessageDialog(null,"El numero de ecuaciones es incorrecto."); //Error cuando ingresan una letra en vez de un numero
         }
         
     
@@ -322,6 +322,7 @@ public class Window extends javax.swing.JFrame implements ActionListener{
 			
 			textAreaPasos.setText("");
 			jButtonGenerarActionPerformed(e);
+			jButtonGenerar.setEnabled(true);
 		}
 		
 		if(e.getSource() == jButton2){	//El usuario presiona Generar Ecuación
@@ -367,10 +368,12 @@ public class Window extends javax.swing.JFrame implements ActionListener{
 				}
 				textAreaPasos.setText(pasosAlg);
 				textAreaMatrices.setText(solucion.imprimirMatrices());
-
+				
+				jButton2.setEnabled(false);
+				jButtonGenerar.setEnabled(false);
 			}
 			
-			jButton2.setEnabled(false);
+			
 		}
 		if(e.getSource() == btnAyudaMaual){	
 			misProcesos.cargarArchivo();
