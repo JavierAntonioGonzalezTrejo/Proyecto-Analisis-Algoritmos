@@ -19,21 +19,18 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
-/**
- *
- * @author federico
- */
+
 public class Window extends javax.swing.JFrame implements ActionListener{
     /**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private int n; //variable encargada de guardar el numero de ecuaciones
+	private int n; //variable encargada de guardar el número de ecuaciones
     DefaultTableModel modelo = new DefaultTableModel(); //modelo de la tabla para ingresar las ecuaciones
     Boolean ban = false;
     Procesos misProcesos = new Procesos();
     String pasosAlg = "[#Veces] - Instruccion\n{ } <-- Indica Subindices\n\n";//Almacena los pasos que realiza el algoritmo
-    public int getN(){ //Metodos para inicializar a n, y obtener su valor
+    public int getN(){ //Métodos para inicializar a n, y obtener su valor
         return n;
     }
     public void setN(int n){
@@ -217,10 +214,10 @@ public class Window extends javax.swing.JFrame implements ActionListener{
             this.setN(Integer.parseInt(jTextFieldNumeroDeEc.getText())); // convierte el texto del campo de valor de n en entero
             n = this.getN(); //obtiene el valor de n
             
-            if(n<=1){ //validacion
-               throw new Exception("Numero incorrecto!! Verifique"); //Validar que el numero de ecuaciones sea mayor que 2
+            if(n<=1){ //validación
+               throw new Exception("Numero incorrecto!! Verifique"); //Validar que el número de ecuaciones sea mayor que 1
             }
-            Object columnas[] = new Object[n+2]; //Generar Numero de ecuaciones NxN en la tabla + la columna del numero de ecuacion
+            Object columnas[] = new Object[n+2]; //Generar Numero de ecuaciones NxN en la tabla + la columna del número de ecuacion
             columnas[0] = "No. Ec";
             for (int i = 1; i < n+2; i++) { //for para ir añadiendo las columnas en la tabla
                 if (i < n + 1) {
@@ -303,11 +300,11 @@ public class Window extends javax.swing.JFrame implements ActionListener{
 			textAreaMatrices.setText("");
 		}
 		
-		if(e.getSource() == jButton2){	//El usuario presiona Generar Ecuacion
-			int optionSelected = JOptionPane.showConfirmDialog(this, "Seguro que son los datos correctos?", "Confirmacion", JOptionPane.YES_NO_OPTION);
+		if(e.getSource() == jButton2){	//El usuario presiona Generar Ecuación
+			int optionSelected = JOptionPane.showConfirmDialog(this, "¿Seguro que son los datos correctos?", "Confirmación", JOptionPane.YES_NO_OPTION);
 			LupSolve solucion = null;
 			
-			if(optionSelected == JOptionPane.YES_OPTION){ //Si en la ventana selecciono la opcion si, se cargaran los datos a la matriz para resolver el sistema 
+			if(optionSelected == JOptionPane.YES_OPTION){ //Si en la ventana selecciono la opción si, se cargaran los datos a la matriz para resolver el sistema 
 				try{
 					solucion = new LupSolve(this.parseValoresIndependiente(), this.parseMatriz()); //Se crea la instancia del metodo LupSolve
 				}
@@ -352,7 +349,7 @@ public class Window extends javax.swing.JFrame implements ActionListener{
 	}
 	
 	private void showResults(LupSolve solucion){
-		Object columnas[] = new Object[n+2]; //Generar Numero de ecuaciones NxN en la tabla + la columna del numero de ecuacion
+		Object columnas[] = new Object[n+2]; //Generar Número de ecuaciones NxN en la tabla + la columna del numero de ecuacion
         columnas[0] = "Soluciones";
         for (int i = 1; i < n+1; i++) { //for para ir añadiendo las columnas en la tabla
                 columnas[i] = "x" + (i); //va añadiendo las incognitas en la tabla x1,x2,x3...xn
@@ -360,10 +357,10 @@ public class Window extends javax.swing.JFrame implements ActionListener{
         
         modelo = new DefaultTableModel(columnas , 1); //modificar el tamaño de la tabla
         
-        for(int i = 1; i <= n; i++){ // Se generara el un indice del numero de ecuaciones.
-        	modelo.setValueAt(solucion.getVectorX()[i-1], 0, i);//Inserta los indices del numero de ecuaciones en la columna 0.
+        for(int i = 1; i <= n; i++){ // Se generará el un índice del numero de ecuaciones.
+        	modelo.setValueAt(solucion.getVectorX()[i-1], 0, i);//Inserta los índices del número de ecuaciones en la columna 0.
         }
         
-        jTable.setModel(modelo); //dimension de la matriz
+        jTable.setModel(modelo); //dimensión de la matriz
 	}
 }
