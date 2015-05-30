@@ -167,9 +167,9 @@ public class Window extends javax.swing.JFrame implements ActionListener{
         jPanel1.add(jButton2);
         jButton2.setBounds(20, 393, 130, 30);
 
-        jLabel2.setText("Pasos:");
+        jLabel2.setText("Algoritmo \r\nLUP-Solve:");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(591, 28, 45, 20);
+        jLabel2.setBounds(502, 18, 149, 40);
         
         btnAyudaMaual = new JButton("Ayuda - Manual");
         btnAyudaMaual.addActionListener(this);
