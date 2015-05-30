@@ -29,9 +29,11 @@ public class Window extends javax.swing.JFrame implements ActionListener{
     DefaultTableModel modelo = new DefaultTableModel(); //modelo de la tabla para ingresar las ecuaciones
     Boolean ban = false;
     Procesos misProcesos = new Procesos();
-    String pasosAlg = "[#Veces] - Instruccion\n{ } <-- Indica Subindices\n\n";//Almacena los pasos que realiza el algoritmo
-    public int getN(){ //Métodos para inicializar a n, y obtener su valor
-        return n;
+    LUPDescomposicion lup = new LUPDescomposicion();
+    String pasosAlg = "[#Veces] - Instruccion\n{ } <-- Indica Subindices\nAlgoritmo LUP\n\n";//Almacena los pasos que realiza el algoritmo
+    public int getN(){ //Metodos para inicializar a n, y obtener su valor
+    	
+    return n;
     }
     public void setN(int n){
         this.n = n;
@@ -48,6 +50,23 @@ public class Window extends javax.swing.JFrame implements ActionListener{
         
     }
     
+    public String algoritmoLUPS(int control)
+    {
+    	String paso = null;
+    	if(control == 0)
+    		paso = "n = rows[L]";
+    	if(control == 1)
+    		paso = "for = 1 to n do";
+    	if(control == 2)
+    		paso = "\t y{i} = b{m[i]} - SUMATORIA (Desde j = 1 hasta i-1) l{ij} * y{j}";
+    	if(control == 3)
+    		paso = "for i = n down to 1 do";
+    	if(control == 4)
+    		paso = "\t x{i} = (y{i} - SUMATORIA (Desde j = i + 1 hasta n) u{ij} * x{j})/u{ii}";
+    	if(control == 5)
+    		paso = "return x";
+    	return paso;
+    }
     public String algoritmo(int control)
     {
     	String paso = null;
@@ -80,7 +99,7 @@ public class Window extends javax.swing.JFrame implements ActionListener{
     	if(control == 13)
     		paso ="\t\t pivote(k)"; 
     	if(control == 14)
-    		paso ="u(kk) = a{kk}"; 
+    		paso ="u(kk) = a{kk}";
     	if(control == 15)
     		paso ="for i = k+1 to n do"; 
     	if(control == 16)
@@ -93,7 +112,7 @@ public class Window extends javax.swing.JFrame implements ActionListener{
     		paso ="\t for j= k+q to n do "; 
     	if(control == 20)
     		paso ="\t\t a{ij} = a{ij} - I{ik}U{kj}"; 
-    	
+   	
     	return paso;
     }
 
@@ -299,6 +318,9 @@ public class Window extends javax.swing.JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == jButtonLimpiar){
 			textAreaMatrices.setText("");
+			pasosAlg = "[#Veces] - Instruccion\n{ } <-- Indica Subindices\nAlgoritmo LUP\n\n";
+			
+			textAreaPasos.setText("");
 			jButtonGenerarActionPerformed(e);
 		}
 		
@@ -309,6 +331,7 @@ public class Window extends javax.swing.JFrame implements ActionListener{
 			if(optionSelected == JOptionPane.YES_OPTION){ //Si en la ventana selecciono la opción si, se cargaran los datos a la matriz para resolver el sistema 
 				try{
 					solucion = new LupSolve(this.parseValoresIndependiente(), this.parseMatriz()); //Se crea la instancia del metodo LupSolve
+
 				}
 				catch(NumberFormatException e1){
 					JOptionPane.showMessageDialog(null, "Los valores no son Numeros reales o no existen, reingresa los datos!");
@@ -317,11 +340,7 @@ public class Window extends javax.swing.JFrame implements ActionListener{
 					JOptionPane.showMessageDialog(null, "Los valores no se han ingresado correctamente");
 				}
 		
-				for(int a = 0; a<21;a++)// Se imprime en el TextField Pasos
-				{
-					pasosAlg += "[0]\t" + algoritmo(a)+"\n";
-				}
-				textAreaPasos.setText(pasosAlg);
+
 				
 				try{
 					solucion.LUPSolve();
@@ -331,6 +350,24 @@ public class Window extends javax.swing.JFrame implements ActionListener{
 					// TODO Auto-generated catch block
 					JOptionPane.showMessageDialog(null, "EL SISTEMA NO TIENE SOLUCION!");				
 				}
+				
+				for(int a = 0; a<21;a++)// Se imprime en el TextField Pasos
+				{
+					if (a==14)
+						pasosAlg = pasosAlg + "\n Funcion Pivote\n";
+					pasosAlg = pasosAlg + "["+ solucion.pasosLUPD(a) +"]\t" + algoritmo(a)+ "\n";
+				}
+				
+				for(int a = 0; a<6;a++)// Se imprime en el TextField Pasos
+				{
+					if(a==0)
+						pasosAlg = pasosAlg + "\n\nLUP Solve\n\n";
+				pasosAlg = pasosAlg + "["+ solucion.pasosLUPSolve(a) +"]\t" + algoritmoLUPS(a)+ "\n";
+				
+				}
+				textAreaPasos.setText(pasosAlg);
+				textAreaMatrices.setText(solucion.imprimirMatrices());
+
 			}
 			
 			jButton2.setEnabled(false);

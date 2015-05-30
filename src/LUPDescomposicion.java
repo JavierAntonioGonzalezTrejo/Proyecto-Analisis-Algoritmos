@@ -1,4 +1,4 @@
-
+import java.text.DecimalFormat; 
 
 public class LUPDescomposicion {
 	
@@ -9,9 +9,19 @@ public class LUPDescomposicion {
 	private int[] vectorM; //Arreglo que almacena posicion de los '1' para matriz de permutacion	
 	private int K; //Variable para verificar posicion de intercambio elemento y renglon
 	public int[] vectorIns; //Vector donde se almacenara el numero de pasos realizados por cada instruccion
-	private int i;
+	private int i; //Variable de control
+	public String pasosMatrices; //Almacena las matrices para imprimirlas 
+	DecimalFormat df = new DecimalFormat("0.000"); 
+	
+	public String pasosInst(int indice)
+	{
+		String cadena = Integer.toString(vectorIns[indice]);
+		return cadena;
+	}
+	
 	public void LUP(double[][] matrizA) throws Exception
 	{
+		pasosMatrices="";
 		int n = matrizA.length;
 		matrizLUP = new double[n][n]; 
 		matrizLUP = matrizA;
@@ -54,15 +64,16 @@ public class LUPDescomposicion {
 				}								
 			}
 			vectorIns[5] +=1;//Instrucciones
-
 			intercambiarElementos(k, K);
 			vectorIns[11] +=1;//Instrucciones
 			intercambiarRenglones(k, K);
 			vectorIns[12] +=1;//Instrucciones
+			pasosMatrices += "\nk = " + k + "\n\n";
 			pivote(k);
 			vectorIns[13] +=1;//Instrucciones
 		}
 		vectorIns[3] +=1;//Instrucciones
+		
 	}
 
 	public double[][] getMatrizLUP()
@@ -75,28 +86,54 @@ public class LUPDescomposicion {
 		int n = matrizLUP.length;
 		vectorIns[14] +=1;//Instrucciones
 		matrizLUP[k][k] = matrizLUP[k][k];
-		
+		for(int i = 0; i<n;i++)
+		{
+			for(int j=0;j<n;j++)
+				pasosMatrices += df.format(matrizLUP[i][j]) + "\t";
+			pasosMatrices += "\n";
+		}
+			pasosMatrices += "\n";
+			
 		for(int i = k+1; i < n; i++)
 		{
 			vectorIns[15] +=1;//Instrucciones
+			pasosMatrices += "Pos ["+i+"]["+k+"] = " + df.format(matrizLUP[i][k]) + " / " + df.format(matrizLUP[k][k]) + "\n";
 			matrizLUP[i][k] = matrizLUP[i][k] / matrizLUP[k][k];
 			vectorIns[16] +=1;//Instrucciones
 			matrizLUP[k][i] = matrizLUP[k][i];
 			vectorIns[17] +=1;//Instrucciones
 		}
 		vectorIns[15] +=1;//Instrucciones
+		pasosMatrices += "\n";
+		for(int i = 0; i<n;i++)
+		{
+			for(int j=0;j<n;j++)
+				pasosMatrices += df.format(matrizLUP[i][j]) + "\t";
+			pasosMatrices += "\n";
+		}
+		pasosMatrices += "\n";
 		for(int i = k+1; i < n; i++)
 		{
 			vectorIns[18] +=1;//Instrucciones
 			for(int j = k+1; j < n; j++)
 			{
 				vectorIns[19] +=1;//Instrucciones
+				pasosMatrices += "Pos ["+i+"]["+j+"] = " + df.format(matrizLUP[i][j]) + " - " + df.format(matrizLUP[i][k]) + " * " + df.format(matrizLUP[k][j]) + "\n";
 				matrizLUP[i][j] = matrizLUP[i][j] - matrizLUP[i][k] * matrizLUP[k][j];
 				vectorIns[20] +=1;//Instrucciones
 			}
 			vectorIns[19] +=1;//Instrucciones
 		}
 		vectorIns[18] +=1;//Instrucciones
+		
+		pasosMatrices += "\n";
+		
+		for(int i = 0; i<n;i++)
+		{
+			for(int j=0;j<n;j++)
+				pasosMatrices += df.format(matrizLUP[i][j]) + "\t";
+			pasosMatrices += "\n";
+		}
 	}
 	
 	//Metodo para intercambiar elementos en el vectorM
@@ -127,7 +164,7 @@ public class LUPDescomposicion {
 		{
 			int n = matrizLUP.length;
 			matrizL = new double[n][n];
-			
+			pasosMatrices = pasosMatrices + "\n\n MatrizL \n";
 			for(int i = 0; i < n; i++)
 			{
 				for(int j = 0; j < n; j++)
@@ -148,6 +185,12 @@ public class LUPDescomposicion {
 					}	
 				}
 			}
+			for(int i = 0;i<n;i++)
+			{
+				for(int j=0;j<n;j++)
+					pasosMatrices = pasosMatrices + df.format(matrizL[i][j]) + "\t";
+				pasosMatrices = pasosMatrices + "\n";
+			}
 			return matrizL;
 		}
 	
@@ -155,6 +198,7 @@ public class LUPDescomposicion {
 	public double[][] obtenerMatrizU()
 	{
 		int n = matrizLUP.length;
+		pasosMatrices = pasosMatrices + "\n\n MatrizU \n";
 		matrizU = new double[n][n];
 		
 		for(int i = 0; i < n; i++)
@@ -172,6 +216,12 @@ public class LUPDescomposicion {
 				}
 			}
 		}
+		for(int i = 0;i<n;i++)
+		{
+			for(int j=0;j<n;j++)
+				pasosMatrices = pasosMatrices + df.format(matrizU[i][j]) + "\t";
+			pasosMatrices = pasosMatrices + "\n";
+		}
 		return matrizU;
 	}
 
@@ -180,10 +230,16 @@ public class LUPDescomposicion {
 	{
 		int n = matrizLUP.length;
 		matrizP = new double[n][n];
-		
+		pasosMatrices = pasosMatrices + "\n\n MatrizP \n";
 		for(int i = 0; i < n; i++)
 		{
 			matrizP[i][vectorM[i]] = 1;
+		}
+		for(int i = 0; i < n; i++)
+		{
+			for(int j = 0; j < n; j++)
+				pasosMatrices = pasosMatrices + df.format(matrizP[i][j]) + "\t";
+			pasosMatrices = pasosMatrices + "\n";
 		}
 		return matrizP;
 	}
