@@ -239,7 +239,7 @@ public class Window extends javax.swing.JFrame implements ActionListener{
             
             
         } catch (Exception e) {
-            JOptionPane.showMessageDialog(this,e.getMessage()); //Error cuando ingresan una letra en ves de un numero
+            JOptionPane.showMessageDialog(this,e.getMessage()); //Error cuando ingresan una letra en vez de un numero
         }
         
     
