@@ -311,8 +311,11 @@ public class Window extends javax.swing.JFrame implements ActionListener{
 				try{
 					solucion = new LupSolve(this.parseValoresIndependiente(), this.parseMatriz()); //Se crea la instancia del metodo LupSolve
 				}
-				catch(Exception e1){
-					JOptionPane.showMessageDialog(null, "Los valores no son Numeros reales o no existen, reingresa los datos y/o asegurate de dar [enter] a os valores ingreados!");
+				catch(NumberFormatException e1){
+					JOptionPane.showMessageDialog(null, "Los valores no son Numeros reales o no existen, reingresa los datos!");
+				}
+				catch(NullPointerException e2){
+					JOptionPane.showMessageDialog(null, "Los valores no se han ingresado correctamente");
 				}
 		
 				for(int a = 0; a<21;a++)// Se imprime en el TextField Pasos
