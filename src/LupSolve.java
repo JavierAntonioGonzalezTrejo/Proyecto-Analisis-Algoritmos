@@ -8,9 +8,9 @@ public class LupSolve {
 	private double[][] matrizL;
 	private double[][] matrizU;
 	private double[][] matrizP;
-	
+	public int[] vectorPasos;
 	private LUPDescomposicion matriz; 
-
+	
 	public LupSolve(double[] vectorB, double[][] matrizLUP){
 		matriz = new LUPDescomposicion();
 		this.vectorB = vectorB;
@@ -22,6 +22,10 @@ public class LupSolve {
 	
 	public void LUPSolve()
 	{
+		vectorPasos = new int [5]; //Contar instrucciones
+		for(int i=0; i<5;i++)//Inicializar el valor de los pasos en 0
+			vectorPasos[i] = 0;
+		vectorPasos[0] += 1; //Contar instrucciones
 		try {
 			matriz.LUP(matrizLUP);
 		} catch (Exception e) {
@@ -33,16 +37,28 @@ public class LupSolve {
 		matrizP = matriz.obtenerMatrizP();
 		
 		int n = matrizL.length;
-		
+		vectorPasos[1] += 1;//Contar instrucciones
 		for(int i = 0; i < n; i++)
 		{
 			vectorY[i] = obtenerValorVectorB(i) - sumatoriaY(i);
+			vectorPasos[2] += 1;
 		}
-		
+		vectorPasos[1] += 1;//Contar instrucciones
+		vectorPasos[3] += 1;//Contar instrucciones
 		for(int i = n - 1; i >= 0; i--)
 		{
 			vectorX[i] = (vectorY[i] - sumatoriaX(i)) / matrizU[i][i];
+			vectorPasos[4] += 1;//Contar instrucciones
 		}
+		vectorPasos[3] += 1;//Contar instrucciones
+		vectorPasos[4] += 1;//Contar instrucciones
+	}
+	
+	public int pasosInstrucciones(int variable)
+	{
+		int var = vectorPasos[variable];
+		return var;
+		
 	}
 	
 	private double sumatoriaY(int i)
