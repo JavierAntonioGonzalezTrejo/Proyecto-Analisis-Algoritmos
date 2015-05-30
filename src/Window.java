@@ -305,22 +305,24 @@ public class Window extends javax.swing.JFrame implements ActionListener{
 		
 		if(e.getSource() == jButton2){	//El usuario presiona Generar Ecuacion
 			int optionSelected = JOptionPane.showConfirmDialog(this, "Seguro que son los datos correctos?", "Confirmacion", JOptionPane.YES_NO_OPTION);
+			LupSolve solucion = null;
 			
 			if(optionSelected == JOptionPane.YES_OPTION){ //Si en la ventana selecciono la opcion si, se cargaran los datos a la matriz para resolver el sistema 
 				try{
-					this.parseMatriz();
-					this.parseValoresIndependiente();
-
+					solucion = new LupSolve(this.parseValoresIndependiente(), this.parseMatriz()); //Se crea la instancia del metodo LupSolve
 				}
 				catch(Exception e1){
 					JOptionPane.showMessageDialog(null, "Los valores no son Numeros reales o no existen, reingresa los datos y/o asegurate de dar [enter] a os valores ingreados!");
 				}
-				textAreaMatrices.setText("holo holo holo holo");
-				for(int a = 0; a<21;a++)
+		
+				for(int a = 0; a<21;a++)// Se imprime en el TextField Pasos
 				{
 					pasosAlg += "[0]\t" + algoritmo(a)+"\n";
 				}
 				textAreaPasos.setText(pasosAlg);
+				
+				solucion.LUPSolve();
+				//this.showResults(solucion);
 			}
 		}
 		if(e.getSource() == btnAyudaMaual){	
@@ -344,5 +346,21 @@ public class Window extends javax.swing.JFrame implements ActionListener{
 		for(int i = 0; i < n; i++)
 			vectorValoresIndependientes[i]= Double.parseDouble((String) jTable.getModel().getValueAt(i, ultimaColumna ));
 		return vectorValoresIndependientes;
+	}
+	
+	private void showResults(LupSolve solucion){
+		Object columnas[] = new Object[n+2]; //Generar Numero de ecuaciones NxN en la tabla + la columna del numero de ecuacion
+        columnas[0] = "Soluciones";
+        for (int i = 1; i < n+1; i++) { //for para ir añadiendo las columnas en la tabla
+                columnas[i] = "x" + (i); //va añadiendo las incognitas en la tabla x1,x2,x3...xn
+        }
+        
+        modelo = new DefaultTableModel(columnas , 1); //modificar el tamaño de la tabla
+        
+        for(int i = 1; i < n; i++){ // Se generara el un indice del numero de ecuaciones.
+        	modelo.setValueAt(solucion.getVectorX()[i-1], 0, i);//Inserta los indices del numero de ecuaciones en la columna 0.
+        }
+        
+        jTable.setModel(modelo); //dimension de la matriz
 	}
 }

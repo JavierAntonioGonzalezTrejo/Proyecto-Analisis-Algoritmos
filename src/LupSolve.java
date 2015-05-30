@@ -17,7 +17,7 @@ public class LupSolve {
 		this.matrizLUP = matrizLUP;
 	}
 	
-	public void LUPSolve(double[] vectorB)
+	public void LUPSolve()
 	{
 		matriz.LUP(matrizLUP);
 		matrizL = matriz.obtenerMatrizL();
