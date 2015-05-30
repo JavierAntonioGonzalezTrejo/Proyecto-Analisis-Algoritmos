@@ -32,7 +32,7 @@ public class Window extends javax.swing.JFrame implements ActionListener{
     DefaultTableModel modelo = new DefaultTableModel(); //modelo de la tabla para ingresar las ecuaciones
     Boolean ban = false;
     Procesos misProcesos = new Procesos();
-    String pasosAlg = "[#Veces] - Instruccion\n";//Almacena los pasos que realiza el algoritmo
+    String pasosAlg = "[#Veces] - Instruccion\n{ } <-- Indica Subindices\n\n";//Almacena los pasos que realiza el algoritmo
     public int getN(){ //Metodos para inicializar a n, y obtener su valor
         return n;
     }
@@ -67,9 +67,9 @@ public class Window extends javax.swing.JFrame implements ActionListener{
     	if(control == 5)
     		paso ="\t for i = k to n do";
     	if(control == 6)
-    		paso ="\t\t if |a(ik)| > p then"; 
+    		paso ="\t\t if |a{ik}| > p then"; 
     	if(control == 7)
-    		paso ="\t\t\t p = |a(ik)|"; 
+    		paso ="\t\t\t p = |a{ik}|"; 
     	if(control == 8)
     		paso ="\t\t\t k = i"; 
     	if(control == 9)
@@ -82,23 +82,20 @@ public class Window extends javax.swing.JFrame implements ActionListener{
     		paso ="\t\t echangeA(k,K)"; 
     	if(control == 13)
     		paso ="\t\t pivote(k)"; 
-    	
-    	
     	if(control == 14)
-    		paso ="u(kk) = a(kk)"; 
+    		paso ="u(kk) = a{kk}"; 
     	if(control == 15)
     		paso ="for i = k+1 to n do"; 
     	if(control == 16)
-    		paso ="\t i(ik) = a(ik)/u(kk)"; 
+    		paso ="\t i(ik) = a{ik}/u{kk}"; 
     	if(control == 17)
-    		paso ="\t u(ki) = a(ki)"; 
+    		paso ="\t u(ki) = a{ki}"; 
     	if(control == 18)
     		paso ="for i = k+1 to n do"; 
     	if(control == 19)
     		paso ="\t for j= k+q to n do "; 
     	if(control == 20)
-    		paso ="\t\t a(ij) = a(ij) - I(ik)U(kj)"; 
-         
+    		paso ="\t\t a{ij} = a{ij} - I{ik}U{kj}"; 
     	
     	return paso;
     }

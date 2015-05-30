@@ -33,38 +33,38 @@ public class LUPDescomposicion {
 			
 		for(int k = 0; k < n-1; k++)
 		{
-			vectorIns[4] +=1;//Instrucciones
+			vectorIns[3] +=1;//Instrucciones
 			pivote = 0;
-			vectorIns[5] +=1;//Instrucciones
+			vectorIns[4] +=1;//Instrucciones
 			for(int i = k; i < n; i++)
 			{
+				vectorIns[5] +=1;//Instrucciones
 				vectorIns[6] +=1;//Instrucciones
-				vectorIns[7] +=1;//Instrucciones
 				if( Math.abs(matrizLUP[i][k]) > pivote)
 				{
 					pivote = Math.abs(matrizLUP[i][k]);
-					vectorIns[8] +=1;//Instrucciones
+					vectorIns[7] +=1;//Instrucciones
 					K = i;
-					vectorIns[9] +=1;//Instrucciones
+					vectorIns[8] +=1;//Instrucciones
 				}
-				vectorIns[10] +=1;//Instrucciones
+				vectorIns[9] +=1;//Instrucciones
 				if(pivote == 0)
 				{
-					vectorIns[11] +=1;//Instrucciones
+					vectorIns[10] +=1;//Instrucciones
 					JOptionPane.showMessageDialog(null, "EL SISTEMA NO TIENE SOLUCION");
 					
 				}								
 			}
-			vectorIns[6] +=1;//Instrucciones
+			vectorIns[5] +=1;//Instrucciones
 
 			intercambiarElementos(k, K);
-			vectorIns[12] +=1;//Instrucciones
+			vectorIns[11] +=1;//Instrucciones
 			intercambiarRenglones(k, K);
-			vectorIns[13] +=1;//Instrucciones
+			vectorIns[12] +=1;//Instrucciones
 			pivote(k);
-			vectorIns[14] +=1;//Instrucciones
+			vectorIns[13] +=1;//Instrucciones
 		}
-		vectorIns[4] +=1;//Instrucciones
+		vectorIns[3] +=1;//Instrucciones
 	}
 
 	public double[][] getMatrizLUP()
@@ -75,30 +75,30 @@ public class LUPDescomposicion {
 	private void pivote(int k)
 	{	
 		int n = matrizLUP.length;
-		vectorIns[15] +=1;//Instrucciones
+		vectorIns[14] +=1;//Instrucciones
 		matrizLUP[k][k] = matrizLUP[k][k];
 		
 		for(int i = k+1; i < n; i++)
 		{
-			vectorIns[16] +=1;//Instrucciones
+			vectorIns[15] +=1;//Instrucciones
 			matrizLUP[i][k] = matrizLUP[i][k] / matrizLUP[k][k];
-			vectorIns[17] +=1;//Instrucciones
+			vectorIns[16] +=1;//Instrucciones
 			matrizLUP[k][i] = matrizLUP[k][i];
-			vectorIns[18] +=1;//Instrucciones
+			vectorIns[17] +=1;//Instrucciones
 		}
-		vectorIns[16] +=1;//Instrucciones
+		vectorIns[15] +=1;//Instrucciones
 		for(int i = k+1; i < n; i++)
 		{
-			vectorIns[19] +=1;//Instrucciones
+			vectorIns[18] +=1;//Instrucciones
 			for(int j = k+1; j < n; j++)
 			{
-				vectorIns[20] +=1;//Instrucciones
+				vectorIns[19] +=1;//Instrucciones
 				matrizLUP[i][j] = matrizLUP[i][j] - matrizLUP[i][k] * matrizLUP[k][j];
-				vectorIns[21] +=1;//Instrucciones
+				vectorIns[20] +=1;//Instrucciones
 			}
-			vectorIns[20] +=1;//Instrucciones
+			vectorIns[19] +=1;//Instrucciones
 		}
-		vectorIns[19] +=1;//Instrucciones
+		vectorIns[18] +=1;//Instrucciones
 	}
 	
 	//Metodo para intercambiar elementos en el vectorM
