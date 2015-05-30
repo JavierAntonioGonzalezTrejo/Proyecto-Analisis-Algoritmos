@@ -32,6 +32,7 @@ public class Window extends javax.swing.JFrame implements ActionListener{
     DefaultTableModel modelo = new DefaultTableModel(); //modelo de la tabla para ingresar las ecuaciones
     Boolean ban = false;
     Procesos misProcesos = new Procesos();
+    LUPDescomposicion lup = new LUPDescomposicion();
     String pasosAlg = "[#Veces] - Instruccion\n{ } <-- Indica Subindices\n\n";//Almacena los pasos que realiza el algoritmo
     public int getN(){ //Metodos para inicializar a n, y obtener su valor
         return n;
@@ -310,19 +311,22 @@ public class Window extends javax.swing.JFrame implements ActionListener{
 			if(optionSelected == JOptionPane.YES_OPTION){ //Si en la ventana selecciono la opcion si, se cargaran los datos a la matriz para resolver el sistema 
 				try{
 					solucion = new LupSolve(this.parseValoresIndependiente(), this.parseMatriz()); //Se crea la instancia del metodo LupSolve
+
 				}
 				catch(Exception e1){
 					JOptionPane.showMessageDialog(null, "Los valores no son Numeros reales o no existen, reingresa los datos y/o asegurate de dar [enter] a os valores ingreados!");
 				}
 		
-				for(int a = 0; a<21;a++)// Se imprime en el TextField Pasos
-				{
-					pasosAlg += "[0]\t" + algoritmo(a)+"\n";
-				}
-				textAreaPasos.setText(pasosAlg);
+
 				
 				solucion.LUPSolve();
 				this.showResults(solucion);
+				for(int a = 0; a<21;a++)// Se imprime en el TextField Pasos
+				{
+					
+					pasosAlg = pasosAlg + "["+ lup.pasosInst(a) +"]\t" + algoritmo(a)+ "\n";
+				}
+				textAreaPasos.setText(pasosAlg);
 			}
 		}
 		if(e.getSource() == btnAyudaMaual){	

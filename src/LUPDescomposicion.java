@@ -11,6 +11,12 @@ public class LUPDescomposicion {
 	public int[] vectorIns; //Vector donde se almacenara el numero de pasos realizados por cada instruccion
 	private int i; //Variable de control
 
+	public String pasosInst(int indice)
+	{
+		String cadena = Integer.toString(vectorIns[indice]);
+		return cadena;
+	}
+	
 	public void LUP(double[][] matrizA) throws Exception
 	{
 		int n = matrizA.length;
