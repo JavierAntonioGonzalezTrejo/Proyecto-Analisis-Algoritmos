@@ -101,7 +101,7 @@ public class Window extends javax.swing.JFrame implements ActionListener{
     	if(control == 13)
     		paso ="\t\t pivote(k)"; 
     	if(control == 14)
-    		paso ="u(kk) = a{kk}"; 
+    		paso ="u(kk) = a{kk}";
     	if(control == 15)
     		paso ="for i = k+1 to n do"; 
     	if(control == 16)
@@ -319,6 +319,9 @@ public class Window extends javax.swing.JFrame implements ActionListener{
 	public void actionPerformed(ActionEvent e) {
 		if(e.getSource() == jButtonLimpiar){
 			textAreaMatrices.setText("");
+			pasosAlg = "[#Veces] - Instruccion\n{ } <-- Indica Subindices\nAlgoritmo LUP\n\n";
+			
+			textAreaPasos.setText("");
 		}
 		
 		if(e.getSource() == jButton2){	//El usuario presiona Generar Ecuacion
@@ -340,6 +343,8 @@ public class Window extends javax.swing.JFrame implements ActionListener{
 				this.showResults(solucion);
 				for(int a = 0; a<21;a++)// Se imprime en el TextField Pasos
 				{
+					if (a==14)
+						pasosAlg = pasosAlg + "\n Funcion Pivote \n";
 					pasosAlg = pasosAlg + "["+ solucion.pasosLUPD(a) +"]\t" + algoritmo(a)+ "\n";
 				}
 				
@@ -351,6 +356,7 @@ public class Window extends javax.swing.JFrame implements ActionListener{
 				
 				}
 				textAreaPasos.setText(pasosAlg);
+				textAreaMatrices.setText(solucion.imprimirMatrices());
 			}
 		}
 		if(e.getSource() == btnAyudaMaual){	
