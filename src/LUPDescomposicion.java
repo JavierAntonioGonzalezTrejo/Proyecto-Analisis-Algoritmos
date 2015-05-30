@@ -10,7 +10,8 @@ public class LUPDescomposicion {
 	private int K; //Variable para verificar posicion de intercambio elemento y renglon
 	public int[] vectorIns; //Vector donde se almacenara el numero de pasos realizados por cada instruccion
 	private int i; //Variable de control
-
+	public String pasosMatrices; //Almacena las matrices para imprimirlas 
+	
 	public String pasosInst(int indice)
 	{
 		String cadena = Integer.toString(vectorIns[indice]);
@@ -19,6 +20,7 @@ public class LUPDescomposicion {
 	
 	public void LUP(double[][] matrizA) throws Exception
 	{
+		pasosMatrices="";
 		int n = matrizA.length;
 		matrizLUP = new double[n][n]; 
 		matrizLUP = matrizA;
@@ -29,11 +31,13 @@ public class LUPDescomposicion {
 		for(i=0; i<21;i++)//Inicializar el valor de los pasos en 0
 			vectorIns[i] = 0;
 		vectorIns[0] = 1;//Instrucciones
+		pasosMatrices="\nMatriz Permutacion\n";
 		for(int i = 0; i < n; i++)
 		{
 			vectorIns[1] +=1;//Instrucciones
 			vectorIns[2] +=1;//Instrucciones
 			vectorM[i] = i;
+			pasosMatrices = vectorM[i] + "\n";
 		}
 		vectorIns[1] +=1;//Instrucciones
 			

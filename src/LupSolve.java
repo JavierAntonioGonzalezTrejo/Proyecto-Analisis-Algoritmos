@@ -22,8 +22,8 @@ public class LupSolve {
 	
 	public void LUPSolve()
 	{
-		vectorPasos = new int [5]; //Contar instrucciones
-		for(int i=0; i<5;i++)//Inicializar el valor de los pasos en 0
+		vectorPasos = new int [6]; //Contar instrucciones
+		for(int i=0; i<6;i++)//Inicializar el valor de los pasos en 0
 			vectorPasos[i] = 0;
 		vectorPasos[0] += 1; //Contar instrucciones
 		try {
@@ -52,6 +52,19 @@ public class LupSolve {
 		}
 		vectorPasos[3] += 1;//Contar instrucciones
 		vectorPasos[4] += 1;//Contar instrucciones
+		vectorPasos[5] += 1;//Contar instrucciones
+		matriz.pasosInst(2);
+		
+	}
+	
+	public String pasosLUPD(int x)
+	{
+		return matriz.pasosInst(x);
+	}
+	
+	public int pasosLUPSolve(int x)
+	{
+		return vectorPasos[x];
 	}
 	
 	public int pasosInstrucciones(int variable)

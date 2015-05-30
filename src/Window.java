@@ -33,7 +33,7 @@ public class Window extends javax.swing.JFrame implements ActionListener{
     Boolean ban = false;
     Procesos misProcesos = new Procesos();
     LUPDescomposicion lup = new LUPDescomposicion();
-    String pasosAlg = "[#Veces] - Instruccion\n{ } <-- Indica Subindices\n\n";//Almacena los pasos que realiza el algoritmo
+    String pasosAlg = "[#Veces] - Instruccion\n{ } <-- Indica Subindices\nAlgoritmo LUP\n\n";//Almacena los pasos que realiza el algoritmo
     public int getN(){ //Metodos para inicializar a n, y obtener su valor
         return n;
     }
@@ -52,6 +52,23 @@ public class Window extends javax.swing.JFrame implements ActionListener{
         
     }
     
+    public String algoritmoLUPS(int control)
+    {
+    	String paso = null;
+    	if(control == 0)
+    		paso = "n = rows[L]";
+    	if(control == 1)
+    		paso = "for = 1 to n do";
+    	if(control == 2)
+    		paso = "\t y{i} = b{m[i]} - SUMATORIA (Desde j = 1 hasta i-1) l{ij} * y{j}";
+    	if(control == 3)
+    		paso = "for i = n down to 1 do";
+    	if(control == 4)
+    		paso = "\t x{i} = (y{i} - SUMATORIA (Desde j = i + 1 hasta n) u{ij} * x{j})/u{ii}";
+    	if(control == 5)
+    		paso = "return x";
+    	return paso;
+    }
     public String algoritmo(int control)
     {
     	String paso = null;
@@ -97,7 +114,7 @@ public class Window extends javax.swing.JFrame implements ActionListener{
     		paso ="\t for j= k+q to n do "; 
     	if(control == 20)
     		paso ="\t\t a{ij} = a{ij} - I{ik}U{kj}"; 
-    	
+   	
     	return paso;
     }
 
@@ -323,8 +340,15 @@ public class Window extends javax.swing.JFrame implements ActionListener{
 				this.showResults(solucion);
 				for(int a = 0; a<21;a++)// Se imprime en el TextField Pasos
 				{
-					
-					pasosAlg = pasosAlg + "["+ lup.pasosInst(a) +"]\t" + algoritmo(a)+ "\n";
+					pasosAlg = pasosAlg + "["+ solucion.pasosLUPD(a) +"]\t" + algoritmo(a)+ "\n";
+				}
+				
+				for(int a = 0; a<6;a++)// Se imprime en el TextField Pasos
+				{
+					if(a==0)
+						pasosAlg = pasosAlg + "\n\nLUP Solve\n\n";
+				pasosAlg = pasosAlg + "["+ solucion.pasosLUPSolve(a) +"]\t" + algoritmoLUPS(a)+ "\n";
+				
 				}
 				textAreaPasos.setText(pasosAlg);
 			}
