@@ -37,13 +37,13 @@ public class LupSolve {
 		
 		int n = matrizL.length;
 		vectorPasos[1] += 1;//Contar instrucciones
-		lupSolveMat = lupSolveMat + "\n\nMatrizB\n";
+		lupSolveMat = lupSolveMat + "\n\nVectorB\n";
 		for(int i = 0; i < vectorB.length; i++)
 		{
 			lupSolveMat = lupSolveMat + matriz.df.format(vectorB[i]) + "\n";
 		}
 		
-		lupSolveMat = lupSolveMat + "\nMatriz LY\n";
+		lupSolveMat = lupSolveMat + "\nVectorY\n";
 		for(int i = 0; i < n; i++)
 		{
 			vectorY[i] = obtenerValorVectorB(i) - sumatoriaY(i);
@@ -53,7 +53,7 @@ public class LupSolve {
 		
 		vectorPasos[1] += 1;//Contar instrucciones
 		vectorPasos[3] += 1;//Contar instrucciones
-		lupSolveMat = lupSolveMat + "\nMatriz Ux=y\n";
+		lupSolveMat = lupSolveMat + "\nVectorX\n";
 		for(int i = n - 1; i >= 0; i--)
 		{
 			vectorX[i] = (vectorY[i] - sumatoriaX(i)) / matrizU[i][i];
