@@ -332,7 +332,8 @@ public class Window extends javax.swing.JFrame implements ActionListener{
 			if(optionSelected == JOptionPane.YES_OPTION){ //Si en la ventana selecciono la opción si, se cargaran los datos a la matriz para resolver el sistema 
 				try{
 					solucion = new LupSolve(this.parseValoresIndependiente(), this.parseMatriz()); //Se crea la instancia del metodo LupSolve
-
+					solucion.LUPSolve();
+					this.showResults(solucion);
 				}
 				catch(NumberFormatException e1){
 					JOptionPane.showMessageDialog(null, "Los valores no son Numeros reales o no existen, reingresa los datos!");
@@ -340,16 +341,8 @@ public class Window extends javax.swing.JFrame implements ActionListener{
 				catch(NullPointerException e2){
 					JOptionPane.showMessageDialog(null, "Los valores no se han ingresado correctamente");
 				}
-		
-
-				
-				try{
-					solucion.LUPSolve();
-					this.showResults(solucion);
-				} 
-				catch (Exception e1) {
-					// TODO Auto-generated catch block
-					JOptionPane.showMessageDialog(null, "EL SISTEMA NO TIENE SOLUCION!");				
+				catch(Exception e3){
+					JOptionPane.showMessageDialog(null, "EL SISTEMA NO TIENE SOLUCION!");
 				}
 				
 				for(int a = 0; a<21;a++)// Se imprime en el TextField Pasos
