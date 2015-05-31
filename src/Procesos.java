@@ -6,7 +6,7 @@ public class Procesos {
 	}
 	
 	private void abrir(){
-		String file = new String("src/manual.pdf");
+		String file = new String("manual.pdf");
 		
 		try{
 			Runtime.getRuntime().exec("cmd /c start "+file);
